@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liberty Coding — custom automation for small business</title>
+<meta name="description" content="Liberty Coding builds custom software for small businesses in El Paso and beyond — workflow automation, custom tools, and AI assistants with the bill under control.">
+<style>
+  :root {
+    --bg: #fdfcf9; --ink: #1c2430; --muted: #5b6572; --line: #e3ded4;
+    --accent: #1f5fbf; --accent-ink: #ffffff; --card: #ffffff; --tag: #eef2f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10151c; --ink: #e8e6e0; --muted: #9aa4b0; --line: #263140;
+      --accent: #4d8ae8; --accent-ink: #0b0f14; --card: #171e27; --tag: #1f2937;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 17px/1.65 Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 28px 0 0; }
+  .wordmark {
+    font: 700 15px/1 Verdana, Geneva, sans-serif; letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .wordmark span { color: var(--accent); }
+
+  .hero { padding: 72px 0 56px; }
+  .hero h1 {
+    font-size: clamp(2rem, 5.5vw, 3.1rem); line-height: 1.15;
+    letter-spacing: -0.01em; max-width: 15em;
+  }
+  .hero p.lede { margin-top: 20px; max-width: 34em; color: var(--muted); font-size: 1.08em; }
+  .cta {
+    display: inline-block; margin-top: 32px; padding: 13px 26px;
+    background: var(--accent); color: var(--accent-ink); text-decoration: none;
+    font: 600 15px/1 Verdana, Geneva, sans-serif; border-radius: 6px;
+  }
+  .cta:hover { filter: brightness(1.1); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font: 700 13px/1 Verdana, Geneva, sans-serif; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 28px;
+  }
+  .svc { display: grid; gap: 22px; }
+  .svc article {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 26px 28px;
+  }
+  .svc h3 { font-size: 1.25em; margin-bottom: 6px; }
+  .svc p.hook { color: var(--muted); font-style: italic; margin-bottom: 12px; }
+  .svc p { max-width: 44em; }
+  .svc .ex { margin-top: 14px; font-size: 0.92em; color: var(--muted); }
+  .svc .ex strong { color: var(--ink); }
+
+  .proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .proof article {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .proof h3 { font-size: 1.02em; margin-bottom: 8px; }
+  .proof p { font-size: 0.92em; color: var(--muted); }
+  .proof .tag {
+    display: inline-block; margin-top: 12px; padding: 3px 9px; border-radius: 99px;
+    background: var(--tag); font: 500 11px/1.6 Verdana, Geneva, sans-serif; color: var(--muted);
+  }
+  .proof a { color: var(--accent); font-size: 0.9em; }
+
+  .about p { max-width: 40em; }
+  .about p + p { margin-top: 14px; }
+
+  .contact p { max-width: 40em; margin-bottom: 18px; }
+  #mail-link { color: var(--accent); font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 28px 0 48px;
+    color: var(--muted); font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="wordmark">Liberty <span>Coding</span></div>
+</header>
+
+<div class="hero wrap">
+  <h1>Your busywork, automated.</h1>
+  <p class="lede">Liberty Coding builds custom software for small businesses — the kind
+  that makes a repetitive chore happen by itself, or puts a tool in your team's hands
+  that fits exactly how you already work. Based in El Paso, Texas.</p>
+  <a class="cta" id="cta-mail" href="#contact">Tell us what's eating your time</a>
+</div>
+
+<section class="wrap">
+  <h2>What we do</h2>
+  <div class="svc">
+    <article>
+      <h3>Workflow automation</h3>
+      <p class="hook">The email arrives, the job gets scheduled, the driver gets the message — and nobody typed anything.</p>
+      <p>We connect the systems you already use — email, calendars, WhatsApp, spreadsheets —
+      so that multi-step chores run themselves. You keep the final say; the retyping,
+      cross-checking and forwarding disappear.</p>
+      <p class="ex"><strong>Recently built:</strong> a medicine-delivery dispatch pipeline — pharmacy
+      email in, driver auto-scheduled around their calendar, WhatsApp dispatch out with the
+      paperwork attached. Seconds, not phone calls.</p>
+    </article>
+    <article>
+      <h3>Custom tools &amp; dashboards</h3>
+      <p class="hook">Off-the-shelf software makes you adapt to it. We build the thing you actually wanted.</p>
+      <p>Scheduling boards, rosters, booking flows, member portals, internal dashboards —
+      shaped to your team's real routine, usable from any phone, with your data under
+      your control.</p>
+      <p class="ex"><strong>In daily use:</strong> a team-management platform for a competitive
+      esports team — roster, scheduling, drafts and live game statistics in one place.</p>
+    </article>
+    <article>
+      <h3>AI assistants with the bill under control</h3>
+      <p class="hook">Answers from your data — with hard spending caps, so it can never surprise you.</p>
+      <p>Most questions get answered instantly from your real data at zero cost; AI handles
+      only the hard remainder, behind caching, per-user daily limits and a kill switch.
+      You'll know what every question costs before you ever pay for one.</p>
+      <p class="ex"><strong>In production:</strong> a community answer desk that resolves ~90% of
+      questions without AI at all, and caps the rest at fractions of a cent.</p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Built by Liberty Coding</h2>
+  <div class="proof">
+    <article>
+      <h3>Delivery Dispatch System</h3>
+      <p>Pharmacy email → slip photo read → driver scheduled → WhatsApp dispatch with the
+      document attached. Full pipeline, human-approved at every step.</p>
+      <span class="tag">automation · Outlook · Google Calendar · WhatsApp</span>
+    </article>
+    <article>
+      <h3>LWG Team Tool</h3>
+      <p>Team management for a competitive League of Legends roster: champion pools,
+      scheduling, draft planning, live match statistics.</p>
+      <span class="tag">web app · live game data</span>
+    </article>
+    <article>
+      <h3>GW2 Guild Hub</h3>
+      <p>A members-only community site: live market data, account dashboards, guides, and
+      an AI answer desk with per-member cost caps.</p>
+      <span class="tag">web app · live APIs · governed AI</span>
+    </article>
+    <article>
+      <h3>TickWatch</h3>
+      <p>Performance diagnostics for game-server hosts: one-command install, automatic
+      incident capture, AI-written analysis reports.</p>
+      <span class="tag">diagnostics · monitoring</span>
+    </article>
+  </div>
+</section>
+
+<section class="wrap about">
+  <h2>About</h2>
+  <p>Liberty Coding is Josh Kammeraad, a developer in El Paso, Texas. Everything above was
+  designed, built and shipped using modern AI-assisted engineering — which is the reason
+  custom software now fits small-business budgets when it used to take a contract with a
+  five-figure floor.</p>
+  <p>Small projects, fixed scope, working demo before you commit.</p>
+</section>
+
+<section class="wrap contact" id="contact">
+  <h2>Contact</h2>
+  <p>Tell us the chore you'd most like to never do again — two or three sentences is
+  plenty. You'll get back a plain-English answer about whether it's automatable and
+  what that would take.</p>
+  <p><a id="mail-link" href="#">email us</a></p>
+</section>
+
+<footer class="wrap">
+  Liberty Coding · El Paso, Texas · © 2026
+</footer>
+
+<script>
+  // Assembled at runtime to stay off scrapers' lists.
+  const u = "kammeraadjoshua", d = "hotmail.com";
+  const addr = u + "@" + d;
+  const subject = encodeURIComponent("Automation question — from libertycoding site");
+  const href = "mailto:" + addr + "?subject=" + subject;
+  document.getElementById("mail-link").href = href;
+  document.getElementById("mail-link").textContent = addr;
+  document.getElementById("cta-mail").href = href;
+</script>
+</body>
+</html>
