@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Liberty Coding — custom automation for small business</title>
-<meta name="description" content="Liberty Coding builds custom software for small businesses in El Paso and beyond — workflow automation, custom tools, and AI assistants with the bill under control.">
+<title>Liberty Coding — websites and automation for small business</title>
+<meta name="description" content="Liberty Coding builds websites, automations and custom tools for small businesses in El Paso and beyond — plain English, fixed scope, working demo before you commit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,6 +39,7 @@
     font: 16px/1.65 Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   }
+  img { max-width: 100%; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
   section { scroll-margin-top: 84px; }
   a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
@@ -93,7 +94,11 @@
       radial-gradient(600px 420px at 22% 30%, var(--glow-a), transparent 70%),
       radial-gradient(640px 460px at 78% 18%, var(--glow-b), transparent 70%);
   }
-  .hero-in { position: relative; padding: 104px 0 96px; }
+  .hero-in {
+    position: relative; padding: 88px 0 84px;
+    display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 860px) { .hero-in { grid-template-columns: 1fr; padding: 64px 0; gap: 36px; } }
   .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 13px; font-weight: 600; color: var(--muted);
@@ -105,7 +110,7 @@
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
   }
   .hero h1 {
-    font-size: clamp(2.5rem, 6.5vw, 4.2rem); line-height: 1.06;
+    font-size: clamp(2.4rem, 5.6vw, 3.7rem); line-height: 1.06;
     letter-spacing: -0.03em; font-weight: 800; max-width: 13em;
   }
   .hero h1 em {
@@ -113,46 +118,46 @@
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero .lede { margin-top: 24px; max-width: 36em; color: var(--muted); font-size: 1.14em; }
-  .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero .lede { margin-top: 22px; max-width: 30em; color: var(--muted); font-size: 1.12em; }
+  .hero-cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-photo {
+    width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; display: block;
+    border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-lift);
+  }
 
   /* ---------- sections ---------- */
-  .sect { padding: 88px 0; border-top: 1px solid var(--line-soft); }
+  .sect { padding: 84px 0; border-top: 1px solid var(--line-soft); }
   .kicker {
     font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
     margin-bottom: 12px;
   }
-  .sect > .wrap > h2, .sect-head h2 {
+  .sect-head h2 {
     font-size: clamp(1.6rem, 3.4vw, 2.2rem); letter-spacing: -0.02em;
     font-weight: 750; line-height: 1.2;
   }
-  .sect-head { margin-bottom: 44px; max-width: 40em; }
+  .sect-head { margin-bottom: 40px; max-width: 40em; }
   .sect-head p { margin-top: 12px; color: var(--muted); }
 
   /* ---------- services ---------- */
-  .svc { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+  .svc { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 20px; }
   .svc article {
     background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 30px 28px; box-shadow: var(--shadow);
+    overflow: hidden; box-shadow: var(--shadow);
     transition: transform 0.18s, box-shadow 0.18s;
+    display: flex; flex-direction: column;
   }
   .svc article:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
-  .svc .icon {
-    width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center;
-    background: linear-gradient(135deg, var(--glow-a), var(--glow-b));
-    border: 1px solid var(--line); margin-bottom: 18px;
-  }
-  .svc .icon svg { width: 21px; height: 21px; stroke: var(--accent); }
-  .svc h3 { font-size: 1.16em; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
-  .svc .hook { color: var(--muted); font-size: 0.95em; font-style: italic; margin-bottom: 14px; }
-  .svc p { font-size: 0.97em; }
+  .svc .card-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-bottom: 1px solid var(--line-soft); }
+  .svc .card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+  .svc h3 { font-size: 1.1em; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .svc p { font-size: 0.94em; color: var(--muted); }
+  .svc p strong { color: var(--ink); font-weight: 650; }
   .svc .ex {
-    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft);
-    font-size: 0.9em; color: var(--muted);
+    margin-top: auto; padding-top: 14px; font-size: 0.88em;
   }
-  .svc .ex strong { color: var(--ink); font-weight: 650; }
+  .svc .ex::before { content: ""; display: block; border-top: 1px solid var(--line-soft); margin-bottom: 12px; }
 
   /* ---------- how we work ---------- */
   .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; counter-reset: step; }
@@ -191,14 +196,14 @@
   .about p + p { margin-top: 14px; }
 
   /* ---------- contact band ---------- */
-  .band { padding: 96px 0; border-top: 1px solid var(--line-soft); position: relative; overflow: hidden; }
+  .band { padding: 92px 0; border-top: 1px solid var(--line-soft); position: relative; overflow: hidden; }
   .band::before {
     content: ""; position: absolute; inset: auto -20% -60%; height: 140%; pointer-events: none;
     background: radial-gradient(640px 420px at 50% 100%, var(--glow-a), transparent 70%);
   }
   .band-in { position: relative; text-align: center; max-width: 44em; margin: 0 auto; }
-  .band h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -0.02em; font-weight: 800; }
-  .band p { margin: 18px auto 0; color: var(--muted); max-width: 38em; }
+  .band h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.02em; font-weight: 800; }
+  .band p { margin: 18px auto 0; color: var(--muted); max-width: 36em; }
   .band .hero-cta { justify-content: center; }
   #mail-link { color: var(--accent); font-weight: 600; text-decoration: none; }
   #mail-link:hover { text-decoration: underline; }
@@ -225,15 +230,18 @@
 
 <header class="hero" id="top">
   <div class="wrap hero-in">
-    <span class="eyebrow">Custom software · El Paso, Texas</span>
-    <h1>Your busywork, <em>automated.</em></h1>
-    <p class="lede">Liberty Coding builds custom software for small businesses — the kind
-    that makes a repetitive chore happen by itself, or puts a tool in your team's hands
-    that fits exactly how you already work.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" id="cta-mail" href="#contact">Tell us what's eating your time</a>
-      <a class="btn btn-ghost" href="#work">See what we've built</a>
+    <div>
+      <span class="eyebrow">Software for small business · El Paso, Texas</span>
+      <h1>Your busywork, <em>automated.</em></h1>
+      <p class="lede">Websites, tools and time-savers built for your business — explained
+      in plain English, priced for a small budget, and shown working before you pay.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" id="cta-mail" href="#contact">Tell us what's eating your time</a>
+        <a class="btn btn-ghost" href="#services">See what we do</a>
+      </div>
     </div>
+    <img class="hero-photo" src="img/hero-shop.jpg" width="900" height="600"
+      alt="A shop owner taking a card payment at the counter">
   </div>
 </header>
 
@@ -241,39 +249,52 @@
   <div class="wrap">
     <div class="sect-head">
       <div class="kicker">Services</div>
-      <h2>Three ways we give you your hours back</h2>
+      <h2>Four ways we give you your hours back</h2>
     </div>
     <div class="svc">
       <article>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M4 12h16M4 17h13"/><path d="M18 4l3 3-3 3"/></svg></div>
-        <h3>Workflow automation</h3>
-        <p class="hook">The email arrives, the job gets scheduled, the driver gets the message — and nobody typed anything.</p>
-        <p>We connect the systems you already use — email, calendars, WhatsApp, spreadsheets —
-        so that multi-step chores run themselves. You keep the final say; the retyping,
-        cross-checking and forwarding disappear.</p>
-        <p class="ex"><strong>Recently built:</strong> a medicine-delivery dispatch pipeline — pharmacy
-        email in, driver auto-scheduled around their calendar, WhatsApp dispatch out with the
-        paperwork attached. Seconds, not phone calls.</p>
+        <img class="card-img" src="img/svc-website.jpg" width="900" height="600"
+          alt="A customer looking up a business on their phone">
+        <div class="card-body">
+          <h3>A website that brings in customers</h3>
+          <p>Clean, fast, and easy to find on Google — your services, hours and photos,
+          looking right on every phone. Need a price or hours changed? One quick message.</p>
+          <p class="ex"><strong>How it works:</strong> you see the finished site before
+          you pay a thing.</p>
+        </div>
       </article>
       <article>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4"/></svg></div>
-        <h3>Custom tools &amp; dashboards</h3>
-        <p class="hook">Off-the-shelf software makes you adapt to it. We build the thing you actually wanted.</p>
-        <p>Scheduling boards, rosters, booking flows, member portals, internal dashboards —
-        shaped to your team's real routine, usable from any phone, with your data under
-        your control.</p>
-        <p class="ex"><strong>In daily use:</strong> a team-management platform for a competitive
-        esports team — roster, scheduling, drafts and live game statistics in one place.</p>
+        <img class="card-img" src="img/svc-automation.jpg" width="900" height="600"
+          alt="Filling out paper forms by hand">
+        <div class="card-body">
+          <h3>Paperwork that does itself</h3>
+          <p>The email arrives, the job lands on the calendar, the right person gets the
+          message — nobody retypes anything. You approve anything before it goes out.</p>
+          <p class="ex"><strong>Recently built:</strong> a pharmacy's delivery orders go
+          from email to scheduled driver to confirmation text. Seconds, not phone calls.</p>
+        </div>
       </article>
       <article>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>AI assistants with the bill under control</h3>
-        <p class="hook">Answers from your data — with hard spending caps, so it can never surprise you.</p>
-        <p>Most questions get answered instantly from your real data at zero cost; AI handles
-        only the hard remainder, behind caching, per-user daily limits and a kill switch.
-        You'll know what every question costs before you ever pay for one.</p>
-        <p class="ex"><strong>In production:</strong> a community answer desk that resolves ~90% of
-        questions without AI at all, and caps the rest at fractions of a cent.</p>
+        <img class="card-img" src="img/svc-tools.jpg" width="900" height="600"
+          alt="Two people planning work on paper next to their laptops">
+        <div class="card-body">
+          <h3>Tools that fit how you work</h3>
+          <p>Schedules, sign-up sheets, customer lists, quotes — built around your routine,
+          instead of software that forces you to change it. Works from any phone.</p>
+          <p class="ex"><strong>In daily use:</strong> a scheduling and stats platform
+          run by a competitive team, every day.</p>
+        </div>
+      </article>
+      <article>
+        <img class="card-img" src="img/svc-ai.jpg" width="900" height="600"
+          alt="Talking through what's on a laptop screen at a desk">
+        <div class="card-body">
+          <h3>An assistant that answers questions</h3>
+          <p>Hours, prices, policies — answered instantly from your real information, so it
+          never makes things up. With a hard spending cap: the bill can't surprise you.</p>
+          <p class="ex"><strong>Running now:</strong> an answer desk that settles 9 of 10
+          questions free, and the rest for pennies.</p>
+        </div>
       </article>
     </div>
   </div>
@@ -283,25 +304,23 @@
   <div class="wrap">
     <div class="sect-head">
       <div class="kicker">How we work</div>
-      <h2>Small projects, honest scope, no leap of faith</h2>
+      <h2>No jargon, no leap of faith</h2>
     </div>
     <div class="steps">
       <article>
         <h3>Tell us the chore</h3>
-        <p>Two or three sentences in plain English about the thing you'd most like to
-        never do again. You'll get a straight answer on whether it's automatable and
-        what that would take.</p>
+        <p>Two or three sentences, plain English — the thing you'd most like to never
+        do again. You get a straight answer: can it be done, and what it would take.</p>
       </article>
       <article>
-        <h3>See a working demo</h3>
-        <p>Before you commit to anything, you see the automation running on a real
-        example of your work — not a slide deck about it.</p>
+        <h3>See it working first</h3>
+        <p>Before you commit, you watch it run on a real example from your business —
+        not a slideshow about it.</p>
       </article>
       <article>
-        <h3>Fixed scope, your final say</h3>
-        <p>Small, clearly bounded projects. Anything the software sends or decides can
-        be gated behind your approval — automation does the busywork, you stay in
-        charge.</p>
+        <h3>Stay in charge</h3>
+        <p>Small projects with a clear finish line. Anything the software sends or
+        decides can wait for your OK.</p>
       </article>
     </div>
   </div>
@@ -316,27 +335,23 @@
     <div class="proof">
       <article>
         <h3>Delivery Dispatch System</h3>
-        <p>Pharmacy email → slip photo read → driver scheduled → WhatsApp dispatch with the
-        document attached. Full pipeline, human-approved at every step.</p>
-        <span class="tag">automation · Outlook · Google Calendar · WhatsApp</span>
-      </article>
-      <article>
-        <h3>LWG Team Tool</h3>
-        <p>Team management for a competitive League of Legends roster: champion pools,
-        scheduling, draft planning, live match statistics.</p>
-        <span class="tag">web app · live game data</span>
-      </article>
-      <article>
-        <h3>GW2 Guild Hub</h3>
-        <p>A members-only community site: live market data, account dashboards, guides, and
-        an AI answer desk with per-member cost caps.</p>
-        <span class="tag">web app · live APIs · governed AI</span>
+        <p>A pharmacy's delivery orders go from incoming email to a scheduled driver to a
+        confirmation message with the paperwork attached — automatically, with a person
+        approving each step.</p>
+        <span class="tag">automation · email · calendar · messaging</span>
       </article>
       <article>
         <h3>TickWatch</h3>
-        <p>Performance diagnostics for game-server hosts: one-command install, automatic
-        incident capture, AI-written analysis reports.</p>
-        <span class="tag">diagnostics · monitoring</span>
+        <p>Watches busy game servers around the clock, catches slowdowns the moment they
+        happen, and writes a plain-English report on what caused them — for hosting
+        businesses.</p>
+        <span class="tag">monitoring · diagnostics</span>
+      </article>
+      <article>
+        <h3>Community &amp; team platforms</h3>
+        <p>Members-only sites and team dashboards in daily use: schedules, live stats,
+        guides, and a question-answering desk with a hard cost cap.</p>
+        <span class="tag">web apps · live data</span>
       </article>
     </div>
   </div>
@@ -347,14 +362,13 @@
     <div class="about-grid">
       <div class="sect-head" style="margin-bottom:0">
         <div class="kicker">About</div>
-        <h2>Why custom software fits a small-business budget now</h2>
+        <h2>Why this fits a small-business budget now</h2>
       </div>
       <div>
         <p>Liberty Coding is <strong>Josh Kammeraad</strong>, a developer in El Paso, Texas.
-        Everything above was designed, built and shipped using modern AI-assisted
-        engineering — which is the reason custom software now fits small-business budgets
-        when it used to take a contract with a five-figure floor.</p>
-        <p>Small projects, fixed scope, working demo before you commit.</p>
+        Modern AI-assisted building is the reason custom software now costs what a small
+        business can pay — this kind of work used to start at five figures.</p>
+        <p>Small projects. A clear, fixed scope. A working demo before you commit.</p>
       </div>
     </div>
   </div>
@@ -363,8 +377,8 @@
 <section class="band" id="contact">
   <div class="wrap band-in">
     <h2>What would you never do again, if you didn't have to?</h2>
-    <p>Tell us the chore — two or three sentences is plenty. You'll get back a
-    plain-English answer about whether it's automatable and what that would take.</p>
+    <p>Tell us the chore — two or three sentences is plenty. You'll get back a plain-English
+    answer about whether it can be automated and what that would take.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" id="band-mail" href="#contact">Email Liberty Coding</a>
     </div>
@@ -375,7 +389,7 @@
 <footer>
   <div class="wrap foot">
     <span>© 2026 Liberty Coding LLC · El Paso, Texas</span>
-    <span>Custom automation, tools &amp; governed AI</span>
+    <span>Websites · automation · custom tools</span>
   </div>
 </footer>
 
