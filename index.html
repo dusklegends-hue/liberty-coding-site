@@ -217,6 +217,22 @@
   #mail-link { color: var(--accent); font-weight: 600; text-decoration: none; }
   #mail-link:hover { text-decoration: underline; }
   .band .alt { margin-top: 22px; font-size: 0.92em; }
+  .lead-form { margin: 30px auto 0; max-width: 34em; display: grid; gap: 12px; text-align: left; }
+  .lead-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .lead-form .row2 { grid-template-columns: 1fr; } }
+  .lead-form input, .lead-form select, .lead-form textarea {
+    width: 100%; box-sizing: border-box; padding: 12px 14px; font: inherit; font-size: 15px;
+    color: var(--ink); background: var(--bg-raise); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .lead-form textarea { min-height: 110px; resize: vertical; }
+  .lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent;
+  }
+  .lead-form button { justify-self: center; }
+  .hp { position: absolute; left: -5000px; opacity: 0; pointer-events: none; }
+  #lead-status { margin-top: 14px; font-size: 0.95em; font-weight: 600; }
+  #lead-status.ok { color: #16a34a; }
+  #lead-status.err { color: #dc2626; }
 
   /* ---------- footer ---------- */
   footer { border-top: 1px solid var(--line-soft); padding: 30px 0 44px; }
@@ -391,10 +407,25 @@
     <h2>What would you never do again, if you didn't have to?</h2>
     <p>Tell us the chore — two or three sentences is plenty. You'll get back a plain-English
     answer about whether it can be automated and what that would take.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" id="band-mail" href="#contact">Email Liberty Coding</a>
-    </div>
-    <p class="alt">or write to <a id="mail-link" href="#">…</a></p>
+    <form class="lead-form" id="lead-form" novalidate>
+      <div class="row2">
+        <input id="lf-name" name="name" type="text" placeholder="Your name" required maxlength="120" autocomplete="name">
+        <input id="lf-email" name="email" type="email" placeholder="Email" required maxlength="200" autocomplete="email">
+      </div>
+      <select id="lf-service" name="service" aria-label="What do you need?">
+        <option value="" selected>What do you need? (optional)</option>
+        <option value="website">A website</option>
+        <option value="automation">Paperwork / automation</option>
+        <option value="custom-tool">A custom tool</option>
+        <option value="assistant">An assistant that answers questions</option>
+        <option value="other">Something else / not sure</option>
+      </select>
+      <textarea id="lf-message" name="message" placeholder="Two or three sentences, plain English — what's eating your time?" required maxlength="2000"></textarea>
+      <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-primary" type="submit" id="lf-send">Send it over</button>
+    </form>
+    <div id="lead-status" role="status"></div>
+    <p class="alt">prefer email? <a id="mail-link" href="#">…</a></p>
   </div>
 </section>
 
@@ -411,10 +442,51 @@
   const addr = u + "@" + d;
   const subject = encodeURIComponent("Automation question — from libertycoding site");
   const href = "mailto:" + addr + "?subject=" + subject;
-  for (const id of ["mail-link", "cta-mail", "nav-mail", "band-mail"]) {
+  for (const id of ["mail-link", "cta-mail", "nav-mail"]) {
     document.getElementById(id).href = href;
   }
   document.getElementById("mail-link").textContent = addr;
+
+  // Contact form → lead worker. Set at deploy; empty = mailto fallback.
+  const LEAD_ENDPOINT = "";
+  const leadForm = document.getElementById("lead-form");
+  const leadStatus = document.getElementById("lead-status");
+  leadForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!leadForm.reportValidity()) return;
+    const data = {
+      name: document.getElementById("lf-name").value,
+      email: document.getElementById("lf-email").value,
+      service: document.getElementById("lf-service").value || "other",
+      message: document.getElementById("lf-message").value,
+      company: leadForm.elements.company.value,
+    };
+    if (!LEAD_ENDPOINT) {
+      const body = encodeURIComponent(data.message + "\n\n— " + data.name + " (" + data.email + ")");
+      location.href = href + "&body=" + body;
+      return;
+    }
+    const btn = document.getElementById("lf-send");
+    btn.disabled = true;
+    leadStatus.className = "";
+    leadStatus.textContent = "Sending…";
+    try {
+      const res = await fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("bad status");
+      leadStatus.className = "ok";
+      leadStatus.textContent = "Got it — we'll get back to you shortly.";
+      leadForm.reset();
+    } catch {
+      leadStatus.className = "err";
+      leadStatus.textContent = "Something hiccuped — email us instead: " + addr;
+    } finally {
+      btn.disabled = false;
+    }
+  });
 </script>
 </body>
 </html>
