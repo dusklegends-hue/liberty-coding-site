@@ -451,7 +451,7 @@
   document.getElementById("mail-link").textContent = addr;
 
   // Contact form → lead worker. Set at deploy; empty = mailto fallback.
-  const LEAD_ENDPOINT = "";
+  const LEAD_ENDPOINT = "https://contact.libertycoding.net/";
   const leadForm = document.getElementById("lead-form");
   const leadStatus = document.getElementById("lead-status");
   leadForm.addEventListener("submit", async (e) => {

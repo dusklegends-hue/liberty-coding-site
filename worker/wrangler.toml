@@ -3,8 +3,10 @@ main = "contact-worker.js"
 compatibility_date = "2025-10-01"
 workers_dev = false
 
-# Served at contact.libertycoding.net (custom domain on the existing zone).
-routes = [{ pattern = "contact.libertycoding.net", custom_domain = true }]
+# Served at contact.libertycoding.net: a Workers route over a proxied
+# AAAA 100:: record (route, not custom domain, because the deploy token holds
+# Workers Routes but not DNS — the DNS record is made with the DNS token).
+routes = [{ pattern = "contact.libertycoding.net/*", zone_name = "libertycoding.net" }]
 
 [vars]
 TO_EMAIL = "hello@libertycoding.net"
