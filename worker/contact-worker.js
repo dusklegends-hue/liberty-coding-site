@@ -23,9 +23,10 @@ const ALLOWED_ORIGINS = new Set([
   "https://www.libertycoding.net",
 ]);
 
-const SERVICES = new Set(["website", "automation", "custom-tool", "assistant", "other"]);
+const SERVICES = new Set(["tickwatch", "website", "automation", "custom-tool", "assistant", "other"]);
 
 const LABELS = {
+  tickwatch: "Minecraft server lag (TickWatch)",
   website: "A website",
   automation: "Paperwork / automation",
   "custom-tool": "A custom tool",
