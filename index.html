@@ -171,7 +171,9 @@
   .svc .ex::before { content: ""; display: block; border-top: 1px solid var(--line-soft); margin-bottom: 12px; }
 
   /* ---------- how we work ---------- */
-  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; counter-reset: step; }
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 28px; counter-reset: step; }
+  @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
   .steps article { padding: 4px 6px; }
   .steps h3 { display: flex; align-items: baseline; gap: 12px; font-size: 1.05em; font-weight: 700; margin-bottom: 8px; }
   .steps h3::before {
@@ -335,34 +337,34 @@
     </div>
     <div class="steps">
       <article>
-        <h3>1. Tell me the chore</h3>
+        <h3>Tell me the chore</h3>
         <p>Use the form or email. Two or three sentences is enough: what the task
         is, how often it happens, and what it costs you now in time or mistakes.</p>
       </article>
       <article>
-        <h3>2. You get a quote</h3>
+        <h3>You get a quote</h3>
         <p>I write back with what I'd build, what it costs, and how long it takes.
         Fixed price, not hourly. If there's a cheaper way to solve it, or it isn't
         worth building, I say that instead.</p>
       </article>
       <article>
-        <h3>3. Say yes and I build it</h3>
+        <h3>Say yes and I build it</h3>
         <p>Most small projects take one to two weeks. I'll check in once or twice
         with questions, not with progress reports.</p>
       </article>
       <article>
-        <h3>4. See it work on your sample data</h3>
+        <h3>See it work on your sample data</h3>
         <p>I show it handling a real example from your business: your emails,
         your schedule, your orders. You try it. If something's off, I fix it
         before we go further.</p>
       </article>
       <article>
-        <h3>5. Pay when it works</h3>
+        <h3>Pay when it works</h3>
         <p>You've seen it do the job. Once the invoice is paid it goes live in
         your business and it's yours: the software, the source, the accounts.</p>
       </article>
       <article>
-        <h3>6. After that</h3>
+        <h3>After that</h3>
         <p>When your business changes and the software needs to change with it,
         send a message. And nothing gets sent, booked or paid on its own until
         you decide to let it.</p>
