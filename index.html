@@ -130,7 +130,7 @@
   .hero .lede { margin-top: 16px; max-width: 30em; color: var(--muted); font-size: 1.12em; }
   .hero-cta { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; }
   .hero-photo {
-    width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; display: block;
+    width: 100%; height: auto; aspect-ratio: 4 / 3.4; object-fit: cover; display: block;
     border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-lift);
   }
 
@@ -150,7 +150,9 @@
   .sect-head p { margin-top: 12px; color: var(--muted); }
 
   /* ---------- services ---------- */
-  .svc { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 20px; }
+  .svc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  @media (max-width: 980px) { .svc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 540px) { .svc { grid-template-columns: minmax(0, 1fr); } }
   .svc article {
     background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius);
     overflow: hidden; box-shadow: var(--shadow);
@@ -158,7 +160,7 @@
     display: flex; flex-direction: column;
   }
   .svc article:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
-  .svc .card-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-bottom: 1px solid var(--line-soft); }
+  .svc .card-img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-bottom: 1px solid var(--line-soft); }
   .svc .card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
   .svc h3 { font-size: 1.1em; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
   .svc p { font-size: 0.94em; color: var(--muted); }
