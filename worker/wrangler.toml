@@ -1,0 +1,21 @@
+name = "liberty-contact"
+main = "contact-worker.js"
+compatibility_date = "2025-10-01"
+workers_dev = false
+
+# Served at contact.libertycoding.net (custom domain on the existing zone).
+routes = [{ pattern = "contact.libertycoding.net", custom_domain = true }]
+
+[vars]
+TO_EMAIL = "hello@libertycoding.net"
+FROM_EMAIL = "hello@libertycoding.net"
+
+# Secrets are set with `wrangler secret put`, never here:
+#   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GMAIL_SEND_REFRESH_TOKEN, LEADS_WEBHOOK_URL
+
+# Per-IP: 5 submissions a minute is generous for a human, tight for a script.
+[[unsafe.bindings]]
+name = "RATE"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 5, period = 60 }

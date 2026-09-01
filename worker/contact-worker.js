@@ -1,14 +1,21 @@
 /**
  * Liberty Coding contact-form worker.
- * Receives the site's form POST and delivers it as an email to the business
- * inbox, with Reply-To set to the visitor so replying just works.
+ * Receives the site's form POST and delivers it as an email to the intake
+ * inbox (hello@) through the Gmail API, with Reply-To set to the visitor so
+ * replying just works. Optional Discord ping to #leads as a side channel —
+ * and the only copy if the email send fails.
  *
- * Deploy: Cloudflare Worker with secrets/vars:
- *   RESEND_API_KEY  (secret) — Resend API key
- *   TO_EMAIL        (var)    — where leads land, e.g. josh@libertycoding.net
- *   FROM_EMAIL      (var)    — verified sender, e.g. leads@libertycoding.net
- *   LEADS_WEBHOOK_URL (secret, optional) — if set, also pings Discord #leads
- * Never commit any of these; the webhook URL and API key are bearer credentials.
+ * Deploy (wrangler.toml alongside):
+ *   secrets  GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET   — the "Liberty Helper" OAuth client
+ *            GMAIL_SEND_REFRESH_TOKEN                 — gmail.send-only token for joshua@
+ *            LEADS_WEBHOOK_URL (optional)             — Discord #leads webhook
+ *   vars     TO_EMAIL, FROM_EMAIL                     — hello@libertycoding.net
+ *   binding  RATE (ratelimit)                         — per-IP, see wrangler.toml
+ * Never commit any secret; the refresh token and webhook URL are bearer credentials.
+ *
+ * Why Gmail and not a mail API: Josh already owns the mailbox and the OAuth
+ * client; a send-only token is one consent click, versus a new vendor account
+ * plus its DNS. The token can send as him and nothing else.
  */
 
 const ALLOWED_ORIGINS = new Set([
@@ -57,6 +64,75 @@ async function withTimeout(doFetch, ms) {
   }
 }
 
+// ---- Gmail send -----------------------------------------------------------
+
+function b64url(bytes) {
+  let bin = "";
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+const b64 = (str) => {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin);
+};
+// RFC 2047 so a non-ASCII name or subject survives the header.
+const encHeader = (s) => (/^[\x20-\x7e]*$/.test(s) ? s : `=?UTF-8?B?${b64(s)}?=`);
+
+export function buildRawEmail({ from, to, replyTo, subject, text }) {
+  const lines = [
+    `From: ${from}`,
+    `To: ${to}`,
+    `Reply-To: ${replyTo}`,
+    `Subject: ${encHeader(subject)}`,
+    "MIME-Version: 1.0",
+    "Content-Type: text/plain; charset=UTF-8",
+    "Content-Transfer-Encoding: base64",
+    "",
+    b64(text),
+  ];
+  return b64url(new TextEncoder().encode(lines.join("\r\n")));
+}
+
+async function gmailAccessToken(env, signal) {
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: env.GOOGLE_CLIENT_ID,
+      client_secret: env.GOOGLE_CLIENT_SECRET,
+      refresh_token: env.GMAIL_SEND_REFRESH_TOKEN,
+      grant_type: "refresh_token",
+    }),
+    signal,
+  });
+  if (!res.ok) throw new Error(`token ${res.status}`);
+  return (await res.json()).access_token;
+}
+
+async function sendViaGmail(env, { name, email, service, text }) {
+  return withTimeout(async (signal) => {
+    const token = await gmailAccessToken(env, signal);
+    const raw = buildRawEmail({
+      from: `Liberty Coding site <${env.FROM_EMAIL}>`,
+      to: env.TO_EMAIL,
+      replyTo: `${encHeader(name)} <${email}>`,
+      subject: `New lead — ${LABELS[service]} — ${name}`,
+      text,
+    });
+    const res = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ raw }),
+      signal,
+    });
+    return res.ok;
+  }, 10000);
+}
+
+// ---- Handler --------------------------------------------------------------
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
@@ -66,6 +142,14 @@ export default {
     }
     if (request.method !== "POST") {
       return json({ ok: false, error: "method" }, 405, origin);
+    }
+
+    // Per-IP rate limit (binding configured in wrangler.toml). Absent binding
+    // = no limit, so a misconfigured deploy degrades to "works" not "blocks".
+    if (env.RATE) {
+      const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+      const { success } = await env.RATE.limit({ key: ip });
+      if (!success) return json({ ok: false, error: "slow down" }, 429, origin);
     }
 
     let data;
@@ -85,7 +169,7 @@ export default {
     const message = clean(data.message, 2000);
     const service = SERVICES.has(data.service) ? data.service : "other";
 
-    if (!name || !message || !email.includes("@") || email.length < 5) {
+    if (!name || !message || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email)) {
       return json({ ok: false, error: "missing fields" }, 400, origin);
     }
 
@@ -101,26 +185,7 @@ export default {
 
     let delivered = false;
     try {
-      const res = await withTimeout(
-        (signal) =>
-          fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${env.RESEND_API_KEY}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              from: `Liberty Coding leads <${env.FROM_EMAIL}>`,
-              to: [env.TO_EMAIL],
-              reply_to: email,
-              subject: `New lead — ${LABELS[service]} — ${name}`,
-              text,
-            }),
-            signal,
-          }),
-        10000,
-      );
-      delivered = res.ok;
+      delivered = await sendViaGmail(env, { name, email, service, text });
     } catch {
       delivered = false;
     }
@@ -139,7 +204,7 @@ export default {
                 embeds: [
                   {
                     title: delivered
-                      ? "New lead (emailed to inbox)"
+                      ? "New lead (emailed to hello@)"
                       : "New lead — EMAIL DELIVERY FAILED, this ping is the only copy",
                     color: delivered ? 0x2563eb : 0xdc2626,
                     fields: [
