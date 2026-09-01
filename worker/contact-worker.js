@@ -111,14 +111,14 @@ async function gmailAccessToken(env, signal) {
   return (await res.json()).access_token;
 }
 
-async function sendViaGmail(env, { name, email, service, text }) {
+async function sendViaGmail(env, { name, email, business, service, text }) {
   return withTimeout(async (signal) => {
     const token = await gmailAccessToken(env, signal);
     const raw = buildRawEmail({
       from: `Liberty Coding site <${env.FROM_EMAIL}>`,
       to: env.TO_EMAIL,
       replyTo: `${encHeader(name)} <${email}>`,
-      subject: `New lead — ${LABELS[service]} — ${name}`,
+      subject: `New lead — ${LABELS[service]} — ${name}${business ? ` (${business})` : ""}`,
       text,
     });
     const res = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
@@ -160,12 +160,15 @@ export default {
     }
 
     // Honeypot: bots fill every field. Pretend success, deliver nothing.
-    if (clean(data.company, 10)) {
+    // (`website` is the current trap; `company` was the trap before the
+    // visible business-name field existed — a cached old page may still send it.)
+    if (clean(data.website, 10) || clean(data.company, 10)) {
       return json({ ok: true }, 200, origin);
     }
 
     const name = oneLine(data.name, 120);
     const email = oneLine(data.email, 200);
+    const business = oneLine(data.business, 120);
     const message = clean(data.message, 2000);
     const service = SERVICES.has(data.service) ? data.service : "other";
 
@@ -176,6 +179,7 @@ export default {
     const text = [
       `Name: ${name}`,
       `Email: ${email}`,
+      ...(business ? [`Business: ${business}`] : []),
       `Looking for: ${LABELS[service]}`,
       ``,
       message,
@@ -185,7 +189,7 @@ export default {
 
     let delivered = false;
     try {
-      delivered = await sendViaGmail(env, { name, email, service, text });
+      delivered = await sendViaGmail(env, { name, email, business, service, text });
     } catch {
       delivered = false;
     }
@@ -210,6 +214,7 @@ export default {
                     fields: [
                       { name: "Name", value: name.slice(0, 256) },
                       { name: "Email", value: email.slice(0, 256) },
+                      ...(business ? [{ name: "Business", value: business.slice(0, 256) }] : []),
                       { name: "Looking for", value: LABELS[service] },
                       { name: "Message", value: message.slice(0, 1024) },
                     ],

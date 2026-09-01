@@ -415,6 +415,7 @@
         <input id="lf-name" name="name" type="text" placeholder="Your name" required maxlength="120" autocomplete="name">
         <input id="lf-email" name="email" type="email" placeholder="Email" required maxlength="200" autocomplete="email">
       </div>
+      <input id="lf-business" name="business" type="text" placeholder="Business or server name (optional)" maxlength="120" autocomplete="organization">
       <select id="lf-service" name="service" aria-label="What do you need?">
         <option value="" selected>What do you need? (optional)</option>
         <option value="website">A website</option>
@@ -424,7 +425,7 @@
         <option value="other">Something else / not sure</option>
       </select>
       <textarea id="lf-message" name="message" placeholder="Two or three sentences — what's eating your time?" required maxlength="2000"></textarea>
-      <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-primary" type="submit" id="lf-send">Send it over</button>
     </form>
     <div id="lead-status" role="status"></div>
@@ -460,12 +461,13 @@
     const data = {
       name: document.getElementById("lf-name").value,
       email: document.getElementById("lf-email").value,
+      business: document.getElementById("lf-business").value,
       service: document.getElementById("lf-service").value || "other",
       message: document.getElementById("lf-message").value,
-      company: leadForm.elements.company.value,
+      website: leadForm.elements.website.value,
     };
     if (!LEAD_ENDPOINT) {
-      const body = encodeURIComponent(data.message + "\n\n— " + data.name + " (" + data.email + ")");
+      const body = encodeURIComponent(data.message + "\n\n— " + data.name + (data.business ? ", " + data.business : "") + " (" + data.email + ")");
       location.href = href + "&body=" + body;
       return;
     }
