@@ -22,6 +22,7 @@
   "name": "Liberty Coding LLC",
   "url": "https://libertycoding.net/",
   "email": "joshua@libertycoding.net",
+  "telephone": "+1-915-257-6102",
   "founder": { "@type": "Person", "name": "Josh Kammeraad" },
   "areaServed": [
     { "@type": "City", "name": "El Paso", "containedInPlace": { "@type": "State", "name": "Texas" } },
@@ -241,8 +242,8 @@
   .band h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.02em; font-weight: 800; }
   .band p { margin: 18px auto 0; color: var(--muted); max-width: 36em; }
   .band .hero-cta { justify-content: center; }
-  #mail-link { color: var(--accent); font-weight: 600; text-decoration: none; }
-  #mail-link:hover { text-decoration: underline; }
+  #mail-link, .alt a[href^="tel:"], .foot a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  #mail-link:hover, .alt a[href^="tel:"]:hover, .foot a:hover { text-decoration: underline; }
   .band .alt { margin-top: 22px; font-size: 0.92em; }
   .lead-form { margin: 24px auto 0; max-width: 34em; display: grid; gap: 12px; text-align: left; }
   .lead-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -469,13 +470,13 @@
       <button class="btn btn-primary" type="submit" id="lf-send">Send it over</button>
     </form>
     <div id="lead-status" role="status"></div>
-    <p class="alt">prefer email? <a id="mail-link" href="#">…</a></p>
+    <p class="alt">prefer email? <a id="mail-link" href="#">…</a> · or call/text <a href="tel:+19152576102">(915) 257-6102</a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <span>© 2026 Liberty Coding LLC · El Paso, Texas</span>
+    <span>© 2026 Liberty Coding LLC · El Paso, Texas · <a href="tel:+19152576102">(915) 257-6102</a></span>
     <span>Websites · automation · custom tools</span>
   </div>
 </footer>
