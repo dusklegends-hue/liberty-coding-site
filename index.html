@@ -108,7 +108,19 @@
   }
   .nav-links a:hover { color: var(--ink); }
   .nav .btn { margin-left: 4px; }
-  @media (max-width: 720px) { .nav-links { display: none; } .nav .btn { margin-left: auto; } }
+  .nav-links a[aria-current="page"] { color: var(--ink); font-weight: 650; }
+  @media (max-width: 720px) {
+    .nav-in { flex-wrap: wrap; height: auto; padding-top: 11px; gap: 12px; }
+    .nav-links {
+      order: 3; width: 100%; margin: 0 -24px; padding: 9px 24px 11px;
+      gap: 20px; overflow-x: auto; scrollbar-width: none;
+      border-top: 1px solid var(--line-soft);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { white-space: nowrap; }
+    .nav .btn { margin-left: auto; }
+    section { scroll-margin-top: 112px; }
+  }
 
   /* ---------- buttons ---------- */
   .btn {
@@ -291,7 +303,7 @@
   }
   @media (max-width: 560px) {
     .nav-in { gap: 10px; }
-    .wordmark { font-size: 13px; letter-spacing: 0.1em; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .wordmark { font-size: 13px; letter-spacing: 0.1em; }
     .nav .btn { padding: 9px 14px; font-size: 13.5px; }
     .tt { width: 34px; height: 34px; }
   }
@@ -341,6 +353,7 @@
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="/busywork-audit/">Busywork Audit</a>
+      <a href="/tickwatch-case-study/">Case study</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
     </div>
