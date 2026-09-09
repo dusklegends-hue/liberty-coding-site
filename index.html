@@ -295,6 +295,24 @@
     .nav .btn { padding: 9px 14px; font-size: 13.5px; }
     .tt { width: 34px; height: 34px; }
   }
+  /* ---- inline promo link ---- */
+  .promo {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 16px 20px; margin: 18px 0 0;
+    text-decoration: none; color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .promo:hover { transform: translateY(-1px); box-shadow: var(--shadow-lift); border-color: var(--accent); }
+  .promo .pt { flex: 1 1 14em; min-width: 0; }
+  .promo .pk {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .promo .ph { font-weight: 650; margin-top: 2px; }
+  .promo .pd { color: var(--muted); font-size: 0.9em; margin-top: 2px; }
+  .promo .parrow { color: var(--accent); font-weight: 700; font-size: 1.2em; flex: 0 0 auto; }
 </style>
 </head>
 <body>
@@ -322,6 +340,7 @@
     <a class="wordmark" href="#top"><svg viewBox="0 0 64 64" width="20" height="20" style="vertical-align:-5px;margin-right:8px" aria-hidden="true"><defs><linearGradient id="wm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><path d="M49 16 A21 21 0 1 0 49 48" fill="none" stroke="url(#wm)" stroke-width="6.5" stroke-linecap="round"/><path d="M27 20 V41 L44 28" fill="none" stroke="url(#wm)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Liberty <span>Coding</span></a>
     <div class="nav-links">
       <a href="#services">Services</a>
+      <a href="/busywork-audit/">Busywork Audit</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
     </div>
@@ -416,8 +435,6 @@
         <h3>Tell me the chore</h3>
         <p>Use the form or email. Two or three sentences is enough: what the task
         is, how often it happens, and what it costs you now in time or mistakes.</p>
-        <p>Not sure which chore? That's what
-        <a href="/busywork-audit/">the Busywork Audit</a> is for &mdash; free right now for El Paso businesses.</p>
       </article>
       <article>
         <h3>You get a quote</h3>
@@ -448,6 +465,17 @@
         you decide to let it.</p>
       </article>
     </div>
+
+    <a class="promo" href="/busywork-audit/">
+      <div class="pt">
+        <div class="pk">Start here</div>
+        <div class="ph">Not sure which chore is worth automating?</div>
+        <div class="pd">The Busywork Audit — one page: the three chores worth
+        removing, what to leave alone, and the first step priced. Free right
+        now for El Paso businesses.</div>
+      </div>
+      <div class="parrow" aria-hidden="true">&rarr;</div>
+    </a>
   </div>
 </section>
 
@@ -470,7 +498,7 @@
         <p>Built to watch busy game servers around the clock, catch slowdowns the moment
         they happen, and write up what actually caused them — for hosting
         businesses. Validated in a test lab against faults it had never seen.</p>
-        <p><a href="/tickwatch-case-study/">Read the case study: why a server can lag at a perfect 20 TPS &rarr;</a></p>
+        <p style="margin-top:10px"><a href="/tickwatch-case-study/" style="font-weight:650;text-decoration:none">Read the case study &rarr;<br><span style="font-weight:400;font-size:0.9em;color:var(--muted)">Why a server can lag at a perfect 20 TPS</span></a></p>
         <span class="tag">monitoring · diagnostics</span>
       </article>
       <article>
