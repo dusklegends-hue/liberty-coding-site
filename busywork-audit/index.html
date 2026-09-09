@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Busywork Audit — Liberty Coding, El Paso</title>
+<meta name="description" content="Tell me the task you'd never do again if you didn't have to. I look at how your business actually runs, then hand you one page: the three chores worth automating in order, what to leave alone, and the first step priced. Free for the first El Paso businesses.">
+<link rel="canonical" href="https://libertycoding.net/busywork-audit/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="The Busywork Audit — Liberty Coding">
+<meta property="og:description" content="One page: the three chores worth automating, what to leave alone, and the first step priced. Useful even if you never hire me.">
+<meta property="og:url" content="https://libertycoding.net/busywork-audit/">
+<meta property="og:image" content="https://libertycoding.net/img/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "The Busywork Audit",
+  "serviceType": "Business process automation assessment",
+  "url": "https://libertycoding.net/busywork-audit/",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Liberty Coding LLC",
+    "url": "https://libertycoding.net/",
+    "telephone": "+1-915-257-6102",
+    "email": "joshua@libertycoding.net"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "El Paso", "containedInPlace": { "@type": "State", "name": "Texas" } },
+    "Remote"
+  ],
+  "description": "A short look at how a small business actually runs, followed by a one-page written assessment: the three chores worth automating in order with what each costs today, what to leave alone and why, and the first step with a price on it.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free for the first El Paso businesses. Later credited against the first build."
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8; --bg-raise: #ffffff; --ink: #16181d; --muted: #5c6470;
+    --line: #e6e4df; --line-soft: #eeece7;
+    --accent: #2563eb; --accent-2: #7c3aed;
+    --shadow: 0 1px 2px rgba(22, 24, 29, 0.04), 0 8px 24px -12px rgba(22, 24, 29, 0.12);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0e12; --bg-raise: #14171d; --ink: #e9eaee; --muted: #98a0ac;
+      --line: #242832; --line-soft: #1b1f27;
+      --accent: #5b8def; --accent-2: #a78bfa;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+      --bg: #0c0e12; --bg-raise: #14171d; --ink: #e9eaee; --muted: #98a0ac;
+      --line: #242832; --line-soft: #1b1f27;
+      --accent: #5b8def; --accent-2: #a78bfa;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .prose { max-width: 42em; }
+  a { color: var(--accent); }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-in { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .wordmark {
+    font-weight: 800; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
+  }
+  .wordmark span {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .nav-links { display: flex; gap: 24px; margin-left: auto; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav .btn { margin-left: 4px; }
+  @media (max-width: 720px) { .nav-links { display: none; } .nav .btn { margin-left: auto; } }
+
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: 10px;
+    font-size: 14.5px; font-weight: 600; text-decoration: none; line-height: 1;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: var(--shadow); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); background: var(--bg-raise); }
+
+  .kicker {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 12px;
+  }
+  .head { padding: 56px 0 8px; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 2.7rem); letter-spacing: -0.025em; line-height: 1.15; font-weight: 780; margin: 0 0 16px; }
+  h2 { font-size: clamp(1.35rem, 2.8vw, 1.6rem); letter-spacing: -0.015em; line-height: 1.25; font-weight: 750; margin: 44px 0 12px; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 0 0 6px; }
+  .lede { font-size: 1.14rem; color: var(--muted); margin: 0 0 24px; }
+  .sect { padding: 8px 0 56px; }
+  p { margin: 0 0 16px; }
+
+  ol.deliver { counter-reset: d; list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 14px; }
+  ol.deliver li {
+    counter-increment: d; position: relative; padding: 18px 20px 18px 60px;
+    background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  ol.deliver li::before {
+    content: counter(d); position: absolute; left: 20px; top: 17px;
+    width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+    font-size: 13px; font-weight: 700;
+  }
+  ol.deliver li p { margin: 0; color: var(--muted); font-size: 0.95em; }
+
+  .pull {
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem); line-height: 1.4; font-weight: 650;
+    letter-spacing: -0.015em; text-wrap: balance;
+    border-left: 3px solid var(--accent); padding: 4px 0 4px 22px; margin: 34px 0;
+  }
+  /* ---- the deliverable, drawn as a page ---- */
+  .sheet {
+    background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 26px 28px; margin: 24px 0; position: relative;
+  }
+  .sheet::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+  .sheet .sh { font-size: 0.78em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 6px 0 16px; }
+  .chore { display: grid; grid-template-columns: auto 1fr auto; gap: 0 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+  .chore .rank { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 12px; font-weight: 700; align-self: center; }
+  .chore .what { font-weight: 600; }
+  .chore .what span { display: block; font-weight: 400; color: var(--muted); font-size: 0.88em; }
+  .chore .cost { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+  .leave { padding: 14px 0 4px; border-bottom: 1px solid var(--line-soft); color: var(--muted); font-size: 0.93em; }
+  .leave strong { color: var(--ink); }
+  .firststep { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; padding-top: 16px; flex-wrap: wrap; }
+  .firststep .fs { font-weight: 650; }
+  .firststep .price { font-size: 1.25rem; font-weight: 780; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .sheet .fine { color: var(--muted); font-size: 0.84em; margin: 18px 0 0; }
+  @media (max-width: 560px) { .chore { grid-template-columns: auto 1fr; } .chore .cost { grid-column: 2; padding-top: 4px; } }
+
+  /* ---- who shows up ---- */
+  .me {
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+    background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 20px 22px; margin: 30px 0 8px;
+  }
+  .me img {
+    width: 108px; height: 108px; flex: 0 0 auto; border-radius: 12px;
+    object-fit: cover; object-position: 50% 22%; display: block;
+    border: 1px solid var(--line);
+  }
+  .me .who { min-width: 12em; flex: 1 1 16em; }
+  .me .nm { font-weight: 700; font-size: 1.02rem; }
+  .me .rl { color: var(--muted); font-size: 0.9em; margin-top: 2px; }
+  .me p { margin: 10px 0 0; font-size: 0.95em; }
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--bg-raise);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 18px 22px; margin: 26px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .not { display: grid; gap: 10px; margin: 20px 0; padding: 0; list-style: none; }
+  .not li { padding-left: 26px; position: relative; color: var(--muted); }
+  .not li::before { content: "\2014"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .band { border-top: 1px solid var(--line-soft); background: var(--bg-raise); padding: 48px 0; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  footer { border-top: 1px solid var(--line-soft); padding: 30px 0 44px; }
+  .foot { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; color: var(--muted); font-size: 0.86em; }
+  .foot a { color: var(--muted); }
+  /* ---- theme toggle ---- */
+  .tt {
+    margin-left: 4px; width: 38px; height: 38px; flex: 0 0 auto;
+    display: grid; place-items: center; cursor: pointer;
+    background: var(--bg-raise); border: 1px solid var(--line); border-radius: 10px;
+    color: var(--muted); padding: 0;
+  }
+  .tt:hover { color: var(--ink); }
+  .tt svg { width: 17px; height: 17px; display: block; }
+  .tt .moon { display: none; }
+  :root[data-theme="dark"] .tt .moon { display: block; }
+  :root[data-theme="dark"] .tt .sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tt .moon { display: block; }
+    :root:not([data-theme="light"]) .tt .sun { display: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-in { gap: 10px; }
+    .wordmark { font-size: 13px; letter-spacing: 0.1em; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .nav .btn { padding: 9px 14px; font-size: 13.5px; }
+    .tt { width: 34px; height: 34px; }
+  }
+</style>
+</head>
+<body>
+<script>
+(function () {
+  var r = document.documentElement, K = "lc-theme";
+  try { var t = localStorage.getItem(K); if (t === "dark" || t === "light") r.setAttribute("data-theme", t); } catch (e) {}
+  function current() {
+    var a = r.getAttribute("data-theme");
+    if (a) return a;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("#tt");
+    if (!b) return;
+    var next = current() === "dark" ? "light" : "dark";
+    r.setAttribute("data-theme", next);
+    try { localStorage.setItem(K, next); } catch (e2) {}
+  });
+})();
+</script>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="wordmark" href="/"><svg viewBox="0 0 64 64" width="20" height="20" style="vertical-align:-5px;margin-right:8px" aria-hidden="true"><defs><linearGradient id="wm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><path d="M49 16 A21 21 0 1 0 49 48" fill="none" stroke="url(#wm)" stroke-width="6.5" stroke-linecap="round"/><path d="M27 20 V41 L44 28" fill="none" stroke="url(#wm)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Liberty <span>Coding</span></a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#work">Work</a>
+      <a href="/#about">About</a>
+    </div>
+    <a class="btn btn-primary" href="/#contact">Get in touch</a>
+    <button class="tt" type="button" id="tt" aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+<div class="head">
+  <div class="wrap prose">
+    <div class="kicker">For small businesses in El Paso</div>
+    <h1>The Busywork Audit</h1>
+    <p class="lede">Tell me the task you'd never do again if you didn't have to.
+    I'll look at how your business actually runs, and tell you honestly whether
+    it's worth automating — and if it isn't, I'll say that instead.</p>
+  </div>
+</div>
+
+<div class="sect">
+  <div class="wrap prose">
+
+    <p>Most small business owners I talk to know they "should be using AI" by now
+    and have no idea what that means for <em>their</em> shop. That isn't a
+    knowledge problem. There's no shortage of tools. What's missing is somebody
+    who will look at how you actually work and say what to fix first.</p>
+
+    <p>So that's what this is. I come by — or we do a screen-share if you're not
+    in El Paso — and I watch how the work really moves: the orders, the inbox,
+    the schedule, the paperwork, whatever eats your afternoons. Then you get one
+    page.</p>
+
+    <h2>What's on the page</h2>
+
+    <ol class="deliver">
+      <li>
+        <h3>The three chores worth automating, in order</h3>
+        <p>Each one with what it costs you today — hours, mistakes, missed calls —
+        and roughly what it would cost to make it go away.</p>
+      </li>
+      <li>
+        <h3>What to leave alone, and why</h3>
+        <p>Some things are too rare to bother with, too risky to hand to software,
+        or genuinely cheaper to keep doing by hand. Those get named too.</p>
+      </li>
+      <li>
+        <h3>The first step, priced</h3>
+        <p>One concrete thing to do next, with a number on it. Not a range, not
+        "starting at," not a discovery phase.</p>
+      </li>
+    </ol>
+
+    <p>Described like that it still sounds abstract, so here is the shape of it.
+    This is an example, not a real business:</p>
+
+    <div class="sheet">
+      <div class="sh">Busywork audit — example</div>
+
+      <div class="chore">
+        <div class="rank">1</div>
+        <div class="what">Retyping supplier invoices into the accounting system
+          <span>~40 a week, by hand, usually after close</span></div>
+        <div class="cost">3 hrs/wk</div>
+      </div>
+      <div class="chore">
+        <div class="rank">2</div>
+        <div class="what">Answering the same four questions by phone
+          <span>hours, prices, do-you-carry, where-are-you</span></div>
+        <div class="cost">2 hrs/wk</div>
+      </div>
+      <div class="chore">
+        <div class="rank">3</div>
+        <div class="what">Rebuilding the weekly sales figure from two systems
+          <span>every Monday morning, twice, because they disagree</span></div>
+        <div class="cost">1 hr/wk</div>
+      </div>
+
+      <div class="leave">
+        <strong>Leave alone:</strong> the end-of-year inventory count (once a
+        year — automating it costs more than doing it) and anything touching
+        customer refunds (too risky to hand over; keep a person on it).
+      </div>
+
+      <div class="firststep">
+        <div class="fs">First step: invoices land in the accounting system on
+        their own, with you approving each one.</div>
+        <div class="price">$850</div>
+      </div>
+
+      <p class="fine">One page. Three chores, what they cost, what not to touch,
+      and one number. The figures above are illustrative — yours would be your
+      own, measured while I watched.</p>
+    </div>
+
+    <p class="pull">It's useful even if you never hire me. You could hand it to
+    somebody else and they'd know what to build. That's on purpose.</p>
+
+    <h2>What it costs</h2>
+
+    <p>Right now, nothing. I'm doing these free for the first El Paso businesses
+    that'll have me, because I'm learning as much from them as they're getting
+    from me. Later they'll be paid, and credited against the first build if you
+    decide to go ahead.</p>
+
+    <p>There's no catch in that, but there is a reason: I'd rather be judged on a
+    page you can hold than on a pitch.</p>
+
+    <h2>What it isn't</h2>
+
+    <ul class="not">
+      <li>Not a "free consultation call." You get something written, that you keep.</li>
+      <li>Not a sales pitch with a report stapled to it. If the honest answer is
+      "keep doing that by hand," that's what the page says.</li>
+      <li>Not a proposal for some big system. The whole point is finding the one
+      chore worth removing first.</li>
+      <li>Not a commitment. Take the page and do nothing with it — that's a fine
+      outcome, and it still cost you nothing.</li>
+    </ul>
+
+    <h2>Why "leave it alone" is the important part</h2>
+
+    <p>Anyone can hand you a list of things to automate. A chatbot will give you
+    the average list in four seconds.</p>
+
+    <p class="pull">The hard part isn't the list. It's being willing to tell you
+    which ideas aren't worth your money.</p>
+
+    <p>I've had to do that to my own work. I built a messaging feature into a
+    pharmacy delivery system, finished it, and then cut it, because the vendor
+    wouldn't sign the agreement that would have made it safe to use around
+    patient information. That was my own code and my own time, and it still had
+    to go.</p>
+
+    <h2>What happens to what I see</h2>
+
+    <p>An audit means looking at your real work — your inbox, your orders, your
+    paperwork. So, plainly: I look, I take my own notes, and I don't copy your
+    data anywhere. Nothing gets loaded into a tool, kept in a file, or used as
+    an example for somebody else. Names and account numbers don't go in the
+    write-up; the page describes the <em>chore</em>, not your customers.</p>
+
+    <p>If you'd rather I not see something, say so and we'll work around it —
+    I can usually tell what a task costs you from watching you do it once,
+    without reading what's inside. And if your business is one where that
+    matters more than most — medical, legal, financial — tell me up front and
+    I'll put it in writing before I look at anything.</p>
+
+    <h2>Who this is for</h2>
+
+    <p>Small businesses in El Paso where the owner is still personally doing
+    something repetitive every week — retyping orders, chasing paperwork,
+    copying numbers between two systems, answering the same question on the
+    phone for the tenth time. If that's you, there's usually an hour or two a
+    week sitting right there in plain sight.</p>
+
+    <p>If you run a Minecraft server instead of a storefront, the equivalent is
+    <a href="/tickwatch-case-study/">the TickWatch diagnostic</a> — same idea,
+    different world: measure it, name the cause, say what not to touch.</p>
+
+    <div class="me">
+      <img src="/img/josh.jpg" width="640" height="853"
+        alt="Josh Kammeraad, founder of Liberty Coding">
+      <div class="who">
+        <div class="nm">Josh Kammeraad</div>
+        <div class="rl">Liberty Coding LLC — El Paso, Texas</div>
+        <p>That's who turns up. Not an account manager, not a team you never
+        meet — me, with a notepad, for an hour.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap prose">
+    <h2 style="margin-top:0">Want one?</h2>
+    <p>Tell me the chore you'd never do again. That's the whole intake.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/#contact">Tell me what's eating your time</a>
+      <a class="btn btn-ghost" href="tel:+19152576102">Call or text (915) 257-6102</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Liberty Coding LLC · El Paso, Texas · <a href="tel:+19152576102">(915) 257-6102</a></span>
+    <span><a href="/">Home</a> · <a href="/tickwatch-case-study/">TickWatch case study</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
